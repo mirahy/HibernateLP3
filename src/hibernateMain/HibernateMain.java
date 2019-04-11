@@ -19,10 +19,15 @@ public class HibernateMain {
 
         Aluno a = new Aluno();
         a.setNome("mirahy");
+        Aluno c = new Aluno();
+        c.setNome("mirahy2");
         
         AlunoDAO dao = new AlunoDAOImpl();
-        dao.addAluno(a);
+        dao.addOrUpdateAluno(a);
+        dao.addOrUpdateAluno(c);
         
+        Aluno b = dao.FindByID(1);
+        System.out.println("Id:" + b.getRga() + "Nome: " + b.getNome());
       
     }
     
