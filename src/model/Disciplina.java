@@ -8,23 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "aluno")
-public class Aluno {
-    
+@Table(name = "disciplina")
+public class Disciplina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer rga;
+    private Integer id;
     private String nome;
 
-    public Aluno() {
+    public Disciplina() {
     }
 
-    public Integer getRga() {
-        return rga;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRga(Integer rga) {
-        this.rga = rga;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -36,5 +35,6 @@ public class Aluno {
     }
     
     
+   
     
 }

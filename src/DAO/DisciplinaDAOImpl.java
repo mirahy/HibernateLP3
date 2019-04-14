@@ -1,22 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DAO;
 
 import conection.ConectionFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.Aluno;
+import model.Disciplina;
 
-public class AlunoDAOImpl implements AlunoDAO{
+/**
+ *
+ * @author myrah
+ */
+public class DisciplinaDAOImpl implements DisciplinaDAO{
 
     @Override
-    public Aluno addOrUpdateAluno(Aluno aluno) {
+    public Disciplina addOrUpdateDisciplina(Disciplina disciplina) {
         EntityManager em = new ConectionFactory().getConection();
         
         try {
             em.getTransaction().begin();
-               if(aluno.getRga() == null)
-                   em.persist(aluno);
+               if(disciplina.getId() == null)
+                   em.persist(disciplina);
                else
-                   em.merge(aluno);
+                   em.merge(disciplina);
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -25,40 +34,37 @@ public class AlunoDAOImpl implements AlunoDAO{
         }finally{
             em.close();
         }
-        return aluno;
+        return disciplina;
     }
 
     @Override
-    public Aluno FindByID(Integer id) {
+    public Disciplina FindByID(Integer id) {
         EntityManager em = new ConectionFactory().getConection();    
-        Aluno aluno = null;
+        Disciplina disciplina = null;
         try {
-            aluno = em.find(Aluno.class, id);
+            disciplina = em.find(Disciplina.class, id);
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
         }finally{
             em.close();
         }
-        return aluno;
-        
+        return disciplina;
     }
 
     @Override
-    public List<Aluno> FindAll() {
+    public List<Disciplina> FindAll() {
         EntityManager em = new ConectionFactory().getConection();  
-        List<Aluno> lista = null;
+        List<Disciplina> lista = null;
         
         try {
-            lista = em.createQuery("from Aluno a").getResultList();
+            lista = em.createQuery("from Disciplina d").getResultList();
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
         }
         
         return lista;
-        
     }
-    
     
 }
